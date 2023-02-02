@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/subject")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SubjectEntryPoint {
     private SubjectUseCase subjectUseCase;
     @PostMapping("/new")
