@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/subject")
 @AllArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class SubjectEntryPoint {
     private SubjectUseCase subjectUseCase;
     @PostMapping("/new")
@@ -66,3 +66,18 @@ public class SubjectEntryPoint {
         }
     }
 }
+
+
+//@EnableWebSecurity
+//@AllArgsConstructor
+//
+//public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//@Override
+//    public void configure(HttpSecurity httpSecurity) throws Exception{
+//        httpSecurity.csrf().disable()
+//        .authorizeRequests()
+//        .antMatchers("/api1/**").permitAll()
+//        .antMatchers("/api2/**").permitAll()
+//        .antMatchers("/api3/**").permitAll()
+//
+//}

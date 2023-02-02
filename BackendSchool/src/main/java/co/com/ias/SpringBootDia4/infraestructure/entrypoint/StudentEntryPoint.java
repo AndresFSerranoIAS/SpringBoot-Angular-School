@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/student/")
 @AllArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 public class StudentEntryPoint {
 
     private StudentUseCase studentUseCase;

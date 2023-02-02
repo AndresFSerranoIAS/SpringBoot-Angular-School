@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostCreateSubjectUseCase } from './usecases/user/user.usecase';
+import { SubjectUseCase } from './usecases/subject/subject.usecase';
 
 @NgModule({
   declarations: [],
@@ -8,7 +8,7 @@ import { PostCreateSubjectUseCase } from './usecases/user/user.usecase';
     CommonModule
   ],
   providers: [
-    PostCreateSubjectUseCase
+    SubjectUseCase
   ]
 })
 export class DomainModule { }

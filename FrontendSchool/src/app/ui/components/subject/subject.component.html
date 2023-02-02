@@ -1,1 +1,187 @@
-<p>subject works!</p>
+<!-- <div style="display: flex; height: 100%; justify-content: center; align-items: center;">
+  <div style="display: flex; flex-direction: column; justify-content: space-between; width: 80%;">
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+      <div style="width: 50%; height: 100px; background-color: red;">
+        <p style="text-align: center;">Div 1</p>
+      </div>
+      <div style="width: 50%; height: 100px; background-color: blue;">
+        <p style="text-align: center;">Div 2</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+      <div style="width: 50%; height: 100px; background-color: green;">
+        <p style="text-align: center;">Div 3</p>
+      </div>
+      <div style="width: 50%; height: 100px; background-color: yellow;">
+        <p style="text-align: center;">Div 4</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<form [formGroup]="subjectCreateForm">
+       <div class="container py-5 h-100">
+         <div class="row d-flex justify-content-center align-items-center h-100">
+           <div class="col-md-12 col-xl-4">
+             <div class="card" style="border-radius: 15px;">
+               <div class="card-body text-center">
+                 <h4 class="mb-2">Subject Create</h4>
+                 <div class="form-group">
+                   <label for="inputPassword6">Subject Name</label>
+                   <div class="input-group mb-2 mr-sm-2">
+                     <div class="input-group-prepend">
+                       <div class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                     </div>
+                     <input type="text" class="form-control" placeholder="1" formControlName = "subjectId">
+                   </div>
+                   <div class="input-group mb-2 mr-sm-2">
+                       <div class="input-group-prepend">
+                         <div class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Thermodynamics" formControlName = "subjectName">
+                     </div>
+                 </div>
+                 <button type="button" class="btn btn-dark" (click)="submitCreateUser()">
+                   Create subject
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+   </form> -->
+   
+   
+   <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="subjectCreateForm">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                  <h4 class="mb-2">Subject create</h4>
+                  <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="1" formControlName = "subjectId">
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Thermodynamics" formControlName = "subjectName">
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-dark" (click)="submitCreateUser()">
+                    Create subject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="subjectCreateForm">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                  <h4 class="mb-2">Subject Create</h4>
+                  <div class="form-group">
+                    <label for="inputPassword6">Subject Name</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="1" formControlName = "subjectId">
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Thermodynamics" formControlName = "subjectName">
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-dark" (click)="submitCreateUser()">
+                    Create subject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="subjectDeleteForm">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                  <h4 class="mb-2">Subject delete</h4>
+                  <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="1" formControlName = "subjectId">
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-dark" (click)="submitDeleteSubject()">
+                    Delete subject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="subjectCreateForm">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                  <h4 class="mb-2">Subject Create</h4>
+                  <div class="form-group">
+                    <label for="inputPassword6">Subject Name</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="1" formControlName = "subjectId">
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Thermodynamics" formControlName = "subjectName">
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-dark" (click)="submitCreateUser()">
+                    Create subject
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+  
+  
+  
+  

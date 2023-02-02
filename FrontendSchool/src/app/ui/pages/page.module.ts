@@ -7,7 +7,8 @@ import { ComponentsModule } from '../components/components.module';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+ 
   ],
   exports: [HomeComponent],
   providers: [],
