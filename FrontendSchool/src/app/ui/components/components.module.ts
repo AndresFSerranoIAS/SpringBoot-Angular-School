@@ -10,6 +10,7 @@ import { DomainModule } from 'src/app/domain/domain.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SubjectService } from 'src/app/infrastructure/driver-adapter/subject/subject.service';
 import { HomeComponent } from './home/home/home.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
@@ -25,7 +26,7 @@ export const subjectCreaterUseCaseProvider = {
     SubjectComponent,
     StudentComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +34,7 @@ export const subjectCreaterUseCaseProvider = {
     FormsModule,
     ReactiveFormsModule,
     DomainModule,
+    AppRoutingModule
   ],
   providers: [subjectCreaterUseCaseProvider,
     { provide: SubjectGateway, useClass: SubjectService }],
