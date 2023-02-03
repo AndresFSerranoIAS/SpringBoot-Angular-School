@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SubjectService } from 'src/app/infrastructure/driver-adapter/subject/subject.service';
 import { HomeComponent } from './home/home/home.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { StudentGateway } from 'src/app/domain/models/student/gateway/student.gateway';
+import { StudentUseCase } from 'src/app/domain/usecases/student/student.usecase';
+import { StudentService } from 'src/app/infrastructure/driver-adapter/student/student.service';
 
 
 
@@ -19,6 +22,13 @@ export const subjectCreaterUseCaseProvider = {
   provide: SubjectGateway,
   useFactory: subjectCreaterUseCaseFactory,
   deps: [SubjectGateway],
+}
+
+const studentCreaterUseCaseFactory = (studentGateway: StudentGateway) => new StudentUseCase(studentGateway);
+export const studentCreaterUseCaseProvider = {
+  provide: StudentGateway,
+  useFactory: studentCreaterUseCaseFactory,
+  deps: [StudentGateway],
 }
 
 @NgModule({
@@ -37,7 +47,7 @@ export const subjectCreaterUseCaseProvider = {
     AppRoutingModule
   ],
   providers: [subjectCreaterUseCaseProvider,
-    { provide: SubjectGateway, useClass: SubjectService }],
+    { provide: SubjectGateway, useClass: SubjectService },studentCreaterUseCaseProvider,{provide : StudentGateway, useClass : StudentService}],
   exports: [SubjectComponent,
     StudentComponent,
     NavbarComponent]
