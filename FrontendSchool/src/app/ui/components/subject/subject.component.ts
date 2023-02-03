@@ -12,17 +12,35 @@ import Swal from 'sweetalert2'
 export class SubjectComponent implements OnInit {
   subjectCreateForm: FormGroup;
   subjectDeleteForm: FormGroup;
+  subjectUpdateForm: FormGroup;
+  subjectList: Array<{ id: number; name: string; }> = [];
+
   constructor(private formBuilder: FormBuilder, private SubjectUseCase: SubjectUseCase,) {
     this.subjectCreateForm = this.formBuilder.group({
-      subjectId: ["", Validators.required],
+      subjectId: [""],
       subjectName: ["", Validators.required],
     })
     this.subjectDeleteForm = this.formBuilder.group({
       subjectId: ["", Validators.required],
     })
+    this.subjectUpdateForm = this.formBuilder.group({
+      subjectId: ["", Validators.required],
+      subjectName: ["", Validators.required],
+    })
   }
 
   ngOnInit(): void {
+    this.getSubjects();
+    setInterval(() => {
+      this.getSubjects();
+    }, 1000);
+  }
+
+  getSubjects(): void {
+    this.SubjectUseCase.getSubjects().subscribe(result => {
+      console.log(result);
+      this.subjectList = result.data;
+    });
   }
 
   submitCreateUser() {
@@ -30,27 +48,27 @@ export class SubjectComponent implements OnInit {
   }
   validationCreateSubject() {
     this.SubjectUseCase.createSubject({ id: this.subjectCreateForm.value.subjectId, name: this.subjectCreateForm.value.subjectName })
-    .subscribe(result => {
-      if(result?.status == '201'){
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: result?.message,
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }
+      .subscribe(result => {
+        if (result?.status == '201') {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: result?.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
 
-      if(result?.status == '500'){
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: result?.message,
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }
-    })
+        if (result?.status == '500') {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: result?.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+      })
   }
 
   submitDeleteSubject() {
@@ -58,9 +76,9 @@ export class SubjectComponent implements OnInit {
   }
   validationDeleteSubject() {
     const idDeleted = this.subjectDeleteForm.value.subjectId;
-    this.SubjectUseCase.deleteSubject(idDeleted).subscribe( result => {
-      console.log(result);
-      if(result?.status == '200'){
+    this.SubjectUseCase.deleteSubject(idDeleted).subscribe(result => {
+
+      if (result?.status == '200') {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -70,7 +88,7 @@ export class SubjectComponent implements OnInit {
         })
       }
 
-      if(result?.status == '500'){
+      if (result?.status == '500') {
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -81,6 +99,48 @@ export class SubjectComponent implements OnInit {
       }
 
     })
+  }
+
+  submitUpdateUser() {
+    this.validationUpdateSubject();
+  }
+
+  validationUpdateSubject() {
+    this.SubjectUseCase.updateSubject({ id: this.subjectUpdateForm.value.subjectId, name: this.subjectUpdateForm.value.subjectName })
+      .subscribe(result => {
+        console.log(result);
+
+        if (result?.status == '201') {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: result?.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+
+        if (result?.status == '500') {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: result?.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+
+        if (result?.status == '404') {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: result?.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+
+      })
   }
 
 }
