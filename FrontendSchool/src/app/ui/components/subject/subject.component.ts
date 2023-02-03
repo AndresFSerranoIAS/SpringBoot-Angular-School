@@ -38,7 +38,6 @@ export class SubjectComponent implements OnInit {
 
   getSubjects(): void {
     this.SubjectUseCase.getSubjects().subscribe(result => {
-      console.log(result);
       this.subjectList = result.data;
     });
   }
