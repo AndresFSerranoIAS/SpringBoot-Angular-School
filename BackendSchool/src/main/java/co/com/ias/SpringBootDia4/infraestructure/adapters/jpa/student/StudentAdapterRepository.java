@@ -4,6 +4,7 @@ import co.com.ias.SpringBootDia4.domain.model.gateways.IStudentRepository;
 import co.com.ias.SpringBootDia4.domain.model.student.Student;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.StudentDBO;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.SubjectDBO;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.subject.ISubjectRepositoryAdapter;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class StudentAdapterRepository implements IStudentRepository {
         if(idSubjectSearch.isPresent()){
             return StudentDBO.toDomain(studentRepositoryAdapater.save(StudentDBO.fromDomain(student)));
         }
-        return null;
+        throw new SubjectNotFoundException("Por favor ingrese un ID de una materia que se encuentre registrada");
     }
 
     @Override

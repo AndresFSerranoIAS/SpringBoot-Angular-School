@@ -2,6 +2,8 @@ package co.com.ias.SpringBootDia4.infraestructure.entrypoint;
 
 import co.com.ias.SpringBootDia4.domain.model.student.dto.StudentDTO;
 import co.com.ias.SpringBootDia4.domain.usecase.StudentUseCase;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
+import co.com.ias.SpringBootDia4.infraestructure.entrypoint.utility.ResponseHandler;
 import lombok.AllArgsConstructor;
 import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpStatus;
@@ -19,19 +21,14 @@ public class StudentEntryPoint {
     private StudentUseCase studentUseCase;
 
     @PostMapping("/new")
-    public ResponseEntity<?> saveStudent(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity<?> saveStudent(@RequestBody StudentDTO studentDTO) {
         try {
-            StudentDTO student = studentUseCase.saveStudent(studentDTO);
-            return new ResponseEntity<>(String.format("Se ha almacenado correctamente el estudiante %s en la base de datos en la materia",studentDTO.getName()), HttpStatus.CREATED);
-        }
-        catch (NullPointerException e){
-            return new ResponseEntity<>("No existe ninguna materia asociada en la base de datos, por favor relacione el estudiante con una que si exista", HttpStatus.PRECONDITION_FAILED);
-        }
-        catch (PropertyValueException e){
-            return new ResponseEntity<>("Por favor suministre los datos obligatorios para el correcto registro de un estudiante", HttpStatus.BAD_REQUEST);
-        }
-        catch(RuntimeException e){
-            return new ResponseEntity<>("Debe asignar de manera obligatoria una materia al estudiante", HttpStatus.BAD_REQUEST);
+            studentUseCase.saveStudent(studentDTO);
+            return new ResponseEntity<>(String.format("Se ha almacenado correctamente el estudiante %s en la base de datos en la materia", studentDTO.getName()), HttpStatus.CREATED);
+        }catch (IllegalArgumentException e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (SubjectNotFoundException e){
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/")
