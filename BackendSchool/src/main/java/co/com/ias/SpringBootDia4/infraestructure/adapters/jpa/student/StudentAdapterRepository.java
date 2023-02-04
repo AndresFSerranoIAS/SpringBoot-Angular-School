@@ -30,7 +30,7 @@ public class StudentAdapterRepository implements IStudentRepository {
         if(idSubjectSearch.isPresent()){
             return StudentDBO.toDomain(studentRepositoryAdapater.save(StudentDBO.fromDomain(student)));
         }
-        throw new StudentNotFoundException("Por favor ingrese un ID de un estudiante que se encuentre registrado en el sistema");
+        throw new StudentNotFoundException("Por favor ingrese un ID de una materia que se encuentre registrado en el sistema");
     }
 
     @Override

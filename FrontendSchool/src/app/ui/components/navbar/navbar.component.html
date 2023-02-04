@@ -1,16 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
     <a class="navbar-brand" href="#"><i class="fa fa-book" aria-hidden="true"></i> IAS School</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" [routerLink]="['/student']" routerLinkActive="active">Students</a>
-        <a class="nav-item nav-link active" [routerLink]="['/subject']" routerLinkActive="active">Subjects</a>
+        <a class="nav-item nav-link active text-light" [routerLink]="['/student']" routerLinkActive="active">Students</a>
+        <a class="nav-item nav-link active text-light" [routerLink]="['/subject']" routerLinkActive="active">Subjects</a>
       </div>
     </div>
-    <span class="navbar-text">
-        <i class="fa fa-child" aria-hidden="true"></i> Andres Felipe Serrano Barrios
-      </span>
-  </nav>
-  
+    <span class="navbar-text text-light logged-as">
+      Logged as: <i class="fa fa-child" aria-hidden="true"></i> Andres Felipe Serrano Barrios
+    </span>
+  </div>
+</nav>

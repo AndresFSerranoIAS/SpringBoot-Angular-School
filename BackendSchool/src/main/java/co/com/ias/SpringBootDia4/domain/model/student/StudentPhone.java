@@ -10,7 +10,7 @@ public class StudentPhone {
         this.value = value;
         Assert.isTrue(value!="","Por favor ingrese un telefono para el estudiante que quiere registrar en la base de datos");
         Assert.isTrue(value!=null,"Por favor ingrese un telefono para el estudiante que quiere registrar en la base de datos");
-        Assert.isTrue(Pattern.matches("^\\+[0-9]{2}\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{4}$", value), "El número telefónico no tiene el formato correcto (ejemplo: +56 301 3429 5243)");
+        Assert.isTrue(Pattern.matches("^\\+[0-9]{2}\\s[0-9]{3}\\s[0-9]{3}\\s[0-9]{4}$", value), "El número telefónico no tiene el formato correcto (ejemplo: +56 301 342 5243)");
     }
 
     public String getValue() {

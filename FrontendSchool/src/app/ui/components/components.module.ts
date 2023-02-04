@@ -14,6 +14,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { StudentGateway } from 'src/app/domain/models/student/gateway/student.gateway';
 import { StudentUseCase } from 'src/app/domain/usecases/student/student.usecase';
 import { StudentService } from 'src/app/infrastructure/driver-adapter/student/student.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -37,6 +38,7 @@ export const studentCreaterUseCaseProvider = {
     StudentComponent,
     NavbarComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,7 @@ export const studentCreaterUseCaseProvider = {
     { provide: SubjectGateway, useClass: SubjectService },studentCreaterUseCaseProvider,{provide : StudentGateway, useClass : StudentService}],
   exports: [SubjectComponent,
     StudentComponent,
-    NavbarComponent]
+    NavbarComponent,
+   FooterComponent]
 })
 export class ComponentsModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { SubjectUseCase } from 'src/app/domain/usecases/subject/subject.usecase';
 import Swal from 'sweetalert2'
 
@@ -15,7 +16,9 @@ export class SubjectComponent implements OnInit {
   subjectUpdateForm: FormGroup;
   subjectList: Array<{ id: number; name: string; }> = [];
 
-  constructor(private formBuilder: FormBuilder, private SubjectUseCase: SubjectUseCase,) {
+  constructor(private formBuilder: FormBuilder, private SubjectUseCase: SubjectUseCase,private titulo:Title) {
+    titulo.setTitle('Subjects')
+
     this.subjectCreateForm = this.formBuilder.group({
       subjectId: [""],
       subjectName: ["", Validators.required],
@@ -56,6 +59,7 @@ export class SubjectComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.subjectCreateForm.reset();
         }
 
         if (result?.status == '500') {
@@ -85,6 +89,7 @@ export class SubjectComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.subjectDeleteForm.reset();
       }
 
       if (result?.status == '500') {
@@ -117,6 +122,7 @@ export class SubjectComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.subjectUpdateForm.reset();
         }
 
         if (result?.status == '500') {

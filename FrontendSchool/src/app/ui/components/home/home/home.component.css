@@ -1,0 +1,57 @@
+@keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+
+  
+  .title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 50px;
+    color: #333;
+    text-shadow: 2px 2px 2px #ddd;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  
+  .welcome-text {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #333;
+  }
+  
+  .welcome-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 50%;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+    0% {
+    box-shadow: 0 0 10px #b5433f;
+    }
+    50% {
+    box-shadow: 0 0 20px #ff5722;
+    }
+    100% {
+    box-shadow: 0 0 10px #3f51b5;
+    }
+    }
