@@ -4,7 +4,6 @@ import co.com.ias.SpringBootDia4.domain.model.gateways.ISubjectRepository;
 import co.com.ias.SpringBootDia4.domain.model.subject.Subject;
 import co.com.ias.SpringBootDia4.domain.model.subject.dto.SubjectDTO;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
-import co.com.ias.SpringBootDia4.infraestructure.entrypoint.exceptions.SubjectInputNameNotFound;
 
 import java.util.List;
 import java.util.stream.Collectors;

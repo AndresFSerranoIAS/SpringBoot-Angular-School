@@ -3,6 +3,7 @@ package co.com.ias.SpringBootDia4.infraestructure.entrypoint;
 import co.com.ias.SpringBootDia4.domain.model.subject.dto.SubjectDTO;
 import co.com.ias.SpringBootDia4.domain.usecase.SubjectUseCase;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.StudentNotFoundException;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectDeleteExcepetion;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
 import co.com.ias.SpringBootDia4.infraestructure.entrypoint.utility.ResponseHandler;
 import lombok.AllArgsConstructor;
@@ -49,11 +50,11 @@ public class SubjectEntryPoint {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteSubject(@PathVariable Long id){
         try{
-            if(!subjectUseCase.deleteSubject(id)){
-                throw new StudentNotFoundException(String.format("La materia con ID %d no se encuentra en la base de datos por ende no puede ser eliminado",id));
-            }
+            subjectUseCase.deleteSubject(id);
             return ResponseHandler.generateResponse(String.format("Se ha eliminado correctamente el estudiante con ID %d",id),HttpStatus.OK);
-        }catch(StudentNotFoundException e){
+        }catch(SubjectNotFoundException e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch(SubjectDeleteExcepetion e){
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

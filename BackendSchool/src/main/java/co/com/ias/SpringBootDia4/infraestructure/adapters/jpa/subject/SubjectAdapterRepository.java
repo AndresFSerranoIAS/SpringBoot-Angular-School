@@ -2,10 +2,12 @@ package co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.subject;
 
 import co.com.ias.SpringBootDia4.domain.model.gateways.ISubjectRepository;
 import co.com.ias.SpringBootDia4.domain.model.subject.Subject;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.StudentDBO;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.SubjectDBO;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectDeleteExcepetion;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.student.IStudentRepositoryAdapater;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class SubjectAdapterRepository implements ISubjectRepository {
     private final ISubjectRepositoryAdapter subjectRepositoryAdapter;
+    private final IStudentRepositoryAdapater studentRepositoryAdapter;
 
-    public SubjectAdapterRepository(ISubjectRepositoryAdapter subjectRepositoryAdapter) {
+    public SubjectAdapterRepository(ISubjectRepositoryAdapter subjectRepositoryAdapter, IStudentRepositoryAdapater studentRepositoryAdapter) {
         this.subjectRepositoryAdapter = subjectRepositoryAdapter;
+        this.studentRepositoryAdapter = studentRepositoryAdapter;
     }
 
     @Override
@@ -43,11 +47,17 @@ public class SubjectAdapterRepository implements ISubjectRepository {
     public boolean deleteSubject(Long id) {
         Optional<SubjectDBO> subjectErase = subjectRepositoryAdapter.findById(id);
         if(subjectErase.isPresent()){
-            subjectRepositoryAdapter.deleteById(id);
-            return true;
+            List<StudentDBO> students = studentRepositoryAdapter.findBySubjectDBOId(id);
+            if (students.isEmpty()) {
+                subjectRepositoryAdapter.deleteById(id);
+                return true;
+            } else {
+                throw new SubjectDeleteExcepetion("No se puede eliminar la materia ya que hay estudiantes asociados");
+            }
         }
-        return false;
+        throw new SubjectNotFoundException(String.format("La materia con ID %d no se encuentra en la base de datos por ende no puede ser eliminado",id));
     }
+
 
     @Override
     public Subject getSubjectById(Long id) throws SubjectNotFoundException{

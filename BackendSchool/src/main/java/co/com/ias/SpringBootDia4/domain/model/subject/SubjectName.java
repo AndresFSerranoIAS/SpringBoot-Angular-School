@@ -13,7 +13,7 @@ public class SubjectName {
         this.value = value;
         Assert.isTrue(value!="","Por favor ingrese un nombre para la materia que quiere registrar en la base de datos");
         Assert.isTrue(value!=null,"Por favor ingrese un nombre para la materia que quiere registrar en la base de datos");
-        Assert.isTrue(Pattern.matches("\\p{L}+",value),"Por favor sólo suministre letras del abecedario en el nombre de la materia");
+        Assert.isTrue(Pattern.matches("[\\p{L}\\s]+", value), "Por favor sólo suministre letras del abecedario en el nombre de la materia");
         Assert.isTrue(value.length()<=20,"El nombre de la materia no puede superar la extensión de 20 caracteres");
     }
 

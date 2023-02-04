@@ -3,8 +3,8 @@ package co.com.ias.SpringBootDia4.infrastructure.adapters;
 import co.com.ias.SpringBootDia4.domain.model.subject.Subject;
 import co.com.ias.SpringBootDia4.domain.model.subject.SubjectId;
 import co.com.ias.SpringBootDia4.domain.model.subject.SubjectName;
-import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.SubjectDBO;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.student.IStudentRepositoryAdapater;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.subject.ISubjectRepositoryAdapter;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.subject.SubjectAdapterRepository;
 import org.junit.jupiter.api.*;
@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +27,11 @@ public class SubjectAdapterRepositoryTest {
     private SubjectAdapterRepository subjectAdapterRepository;
     @Autowired
     ISubjectRepositoryAdapter repository;
+    @Autowired
+    IStudentRepositoryAdapater repository2;
     @BeforeAll
     void init(){
-        subjectAdapterRepository = new SubjectAdapterRepository(repository);
+        subjectAdapterRepository = new SubjectAdapterRepository(repository, repository2);
     }
 
     @Test

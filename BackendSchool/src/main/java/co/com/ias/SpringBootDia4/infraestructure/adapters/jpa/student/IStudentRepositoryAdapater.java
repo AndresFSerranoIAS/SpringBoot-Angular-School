@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IStudentRepositoryAdapater extends JpaRepository<StudentDBO,Long> {
     List<StudentDBO> findBySubjectDBO_Id(Long id);
+
+    List<StudentDBO> findBySubjectDBOId(Long id);
 }

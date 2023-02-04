@@ -4,6 +4,7 @@ import co.com.ias.SpringBootDia4.domain.model.gateways.IStudentRepository;
 import co.com.ias.SpringBootDia4.domain.model.student.Student;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.StudentDBO;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.entity.SubjectDBO;
+import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.StudentNotFoundException;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.exceptions.SubjectNotFoundException;
 import co.com.ias.SpringBootDia4.infraestructure.adapters.jpa.subject.ISubjectRepositoryAdapter;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class StudentAdapterRepository implements IStudentRepository {
         if(idSubjectSearch.isPresent()){
             return StudentDBO.toDomain(studentRepositoryAdapater.save(StudentDBO.fromDomain(student)));
         }
-        throw new SubjectNotFoundException("Por favor ingrese un ID de una materia que se encuentre registrada");
+        throw new StudentNotFoundException("Por favor ingrese un ID de un estudiante que se encuentre registrado en el sistema");
     }
 
     @Override
@@ -51,7 +52,7 @@ public class StudentAdapterRepository implements IStudentRepository {
             studentChange.get().setEmail(student.getEmail().getValue());
             return StudentDBO.toDomain(studentRepositoryAdapater.save(StudentDBO.fromDomain(student)));
         }else{
-            return null;
+            throw new StudentNotFoundException("Por favor ingrese un ID de un estudiante que se encuentre registrado en el sistema");
         }
     }
     @Override
@@ -62,7 +63,7 @@ public class StudentAdapterRepository implements IStudentRepository {
             studentRepositoryAdapater.deleteById(id);
             return true;
         }
-        return false;
+        throw new StudentNotFoundException(String.format("El estudiante con ID %d no se encuentra en la base de datos por ende no puede ser eliminado",id));
     }
 
     @Override

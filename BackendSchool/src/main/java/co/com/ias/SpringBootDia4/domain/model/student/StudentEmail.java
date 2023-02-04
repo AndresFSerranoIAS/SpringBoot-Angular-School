@@ -11,7 +11,7 @@ public class StudentEmail {
         this.value = value;
         Assert.isTrue(value!="","Por favor ingrese el email para el estudiante que quiere registrar en la base de datos");
         Assert.isTrue(value!=null,"Por favor ingrese el email para el estudiante que quiere registrar en la base de datos");
-        Assert.isTrue(!Pattern.matches("[^(.+)@(\\S+)$]+",value),"Por favor solo suministre un formato de email válido para el estudiante que quiere registrar en la base de datos");
+        Assert.isTrue(Pattern.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", value), "Por favor suministre un formato de email válido.");
     }
 
     public String getValue() {
