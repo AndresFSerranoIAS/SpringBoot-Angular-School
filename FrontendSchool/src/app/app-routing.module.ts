@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '',redirectTo: '/home',pathMatch: 'full'},
   {path: 'home', component:HomeComponent},
   {path: 'subject', component: SubjectComponent},
-  {path: 'student', component: StudentComponent},
+  {component: StudentComponent, path: 'student',children:[{path: 'create', component: HomeComponent}]},
   {path: '**' , redirectTo : '/home'}]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
